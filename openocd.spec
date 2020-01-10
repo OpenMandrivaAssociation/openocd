@@ -23,7 +23,7 @@ debugging.
 
 %prep
 %setup -q
-%apply_patches
+%autopatch -p1
 
 rm src/jtag/drivers/OpenULINK/ulink_firmware.hex
 
