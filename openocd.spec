@@ -1,16 +1,19 @@
+%define _disable_rebuild_configure 1
+
 Name:		openocd
-Version:	0.8.0
+Version:	0.12.0
 Release:	1
 Summary:	Debugging, in-system programming and boundary-scan testing for embedded devices
 
 Group:		Development/Other
 License:	GPLv2
-URL:		http://sourceforge.net/projects/openocd
+URL:		http://openocd.org/
 Source0:	http://downloads.sourceforge.net/project/openocd/openocd/%{version}/%{name}-%{version}.tar.bz2
 
 BuildRequires:	pkgconfig(hidapi-hidraw)
 BuildRequires:	pkgconfig(libftdi1)
 BuildRequires:	pkgconfig(libusb-1.0)
+BuildRequires:	locales-extra-charsets
 BuildRequires:	sdcc
 
 %description
@@ -22,8 +25,7 @@ Install OpenOCD if you are looking for an open source solution for hardware
 debugging.
 
 %prep
-%setup -q
-%autopatch -p1
+%autosetup -p1
 
 rm src/jtag/drivers/OpenULINK/ulink_firmware.hex
 
@@ -33,7 +35,7 @@ mv -f openocd.info.conv openocd.info
 
 %build
 pushd src/jtag/drivers/OpenULINK
-%make hex
+%make_build hex
 popd
 
 %configure	--disable-werror \
@@ -76,10 +78,10 @@ popd
 		--enable-buspirate \
 		--enable-sysfsgpio \
 		--enable-remote-bitbang
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 %files
 %doc README AUTHORS ChangeLog NEWS TODO
