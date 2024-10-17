@@ -7,7 +7,7 @@ Summary:	Debugging, in-system programming and boundary-scan testing for embedded
 
 Group:		Development/Other
 License:	GPLv2
-URL:		http://openocd.org/
+URL:		https://openocd.org/
 Source0:	http://downloads.sourceforge.net/project/openocd/openocd/%{version}/%{name}-%{version}.tar.bz2
 
 BuildRequires:	pkgconfig(hidapi-hidraw)
